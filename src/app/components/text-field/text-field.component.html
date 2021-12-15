@@ -1,0 +1,12 @@
+<div class="form-control">
+  <label [for]="fields?.fieldName">{{ fields?.fieldLabel }}</label>
+  <input
+    [required]="fields?.required"
+    [type]="fields?.fieldType"
+    [id]="fields?.fieldName"
+    [name]="fields?.fieldName"
+    [value]="fields?.defaultValue"
+    [placeholder]="fields?.fieldPlaceholder"
+    (input)="handleChange($event)"
+  />
+</div>

@@ -1,0 +1,17 @@
+<div [ngStyle]="{ display: modal?.isShow ? 'block' : 'none' }" class="modal">
+  <div [ngStyle]="{ width: widthModal || '50%' }" class="modal-content">
+    <span class="close" (click)="handleCloseModal(!modal?.isShow)"
+      >&times;</span
+    >
+    <div style="text-align: left">
+      <h3>{{ modal?.headerTitle }}</h3>
+      <div style="margin-top: 20px">
+        <p>{{ modal?.message }}</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <!-- Children -->
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
