@@ -1,0 +1,8 @@
+<button
+  [ngStyle]="{ 'background-color': color, color: labelColor }"
+  [disabled]="isLoading"
+  (click)="handleClick()"
+  class="btn"
+>
+  {{ isLoading ? "loading..." : label }}
+</button>

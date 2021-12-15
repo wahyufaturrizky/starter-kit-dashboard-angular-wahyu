@@ -1,0 +1,23 @@
+<div class="container-login">
+  <form (ngSubmit)="handleSubmit()">
+    <app-text-field
+      *ngFor="let fields of form; index as i"
+      [fields]="fields"
+      (onHandleChange)="onHandleChange($event)"
+    ></app-text-field>
+    <app-button-filled-block
+      [isLoading]="isLoading"
+      [label]="isRegister ? 'REGISTER' : 'LOGIN'"
+    ></app-button-filled-block>
+  </form>
+  <app-button-outlined-block
+    [label]="isRegister ? 'BACK TO LOGIN' : 'REGISTER'"
+    [isLoading]="isLoading"
+    (onHandleClick)="onHandleRegister()"
+  ></app-button-outlined-block>
+</div>
+<app-modal
+  [widthModal]="'40%'"
+  (onhandleCloseModal)="onhandleCloseModal($event)"
+  [modal]="modal"
+></app-modal>

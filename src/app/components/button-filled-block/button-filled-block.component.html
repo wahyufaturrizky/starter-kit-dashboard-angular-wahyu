@@ -1,0 +1,7 @@
+<input
+  class="btn btn-block"
+  type="submit"
+  [ngStyle]="{ 'background-color': color, color: labelColor }"
+  [value]="isLoading ? 'loading...' : label"
+  [disabled]="isLoading"
+/>
