@@ -8,7 +8,7 @@ import {
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 
-const dataUser: string | null = localStorage.getItem('dataUser');
+const dataUser: string | null = localStorage.getItem('userData');
 const dataUserParse = dataUser && JSON.parse(dataUser);
 
 const httpHeader = {
@@ -16,6 +16,8 @@ const httpHeader = {
     'Content-Type': 'application/json',
   }),
 };
+
+console.log('@dataUserParse', dataUserParse);
 
 const httpHeaderPrivate = {
   headers: new HttpHeaders({
@@ -54,7 +56,7 @@ export class AuthService {
 
   PutUser(
     data: ReqRegisterInterface,
-    id: string
+    id: string | undefined
   ): Observable<ReqRegisterInterface> {
     return this.http.patch<ReqRegisterInterface>(
       `${this.apiUrl}/api/users/${id}`,
@@ -63,14 +65,14 @@ export class AuthService {
     );
   }
 
-  GetLitUsers(): Observable<ResUserInterce> {
-    return this.http.get<ResUserInterce>(
+  GetLitUsers(): Observable<Array<ResUserInterce>> {
+    return this.http.get<Array<ResUserInterce>>(
       `${this.apiUrl}/api/users/`,
       httpHeaderPrivate
     );
   }
 
-  DeleteUser(id: string): Observable<any> {
+  DeleteUser(id: string | undefined): Observable<any> {
     return this.http.delete<any>(
       `${this.apiUrl}/api/users/${id}`,
       httpHeaderPrivate

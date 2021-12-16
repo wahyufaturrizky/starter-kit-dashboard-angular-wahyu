@@ -1,1 +1,61 @@
-<app-wrapper-content></app-wrapper-content>
+<app-wrapper-content>
+  <div class="container">
+    <div style="justify-content: flex-end; display: flex">
+      <app-button-filled
+        [label]="'ADD'"
+        (onHandleClick)="handleAdd()"
+      ></app-button-filled>
+    </div>
+    <app-table
+      (onHandleView)="onHandleView($event)"
+      (onHandleEdit)="onHandleEdit($event)"
+      (onHandleDelete)="onHandleDelete($event)"
+      [dataTable]="dataTable"
+    ></app-table>
+  </div>
+</app-wrapper-content>
+<app-modal (onhandleCloseModal)="onhandleCloseModal($event)" [modal]="modal">
+  <div *ngIf="modal.headerTitle === 'VIEW'">
+    <p
+      *ngFor="let data of modal.dataRow | keyvalue; index as i"
+      style="font-weight: bold; margin-bottom: 8px"
+    >
+      {{ data.key + " : "
+      }}<span style="font-weight: normal">{{ data.value }}</span>
+    </p>
+  </div>
+  <div *ngIf="modal.headerTitle === 'EDIT'">
+    <form (ngSubmit)="handleUpdate()">
+      <app-text-field
+        *ngFor="let fields of modal.listMenu; index as i"
+        [fields]="fields"
+        (onHandleChange)="onHandleChange($event)"
+      ></app-text-field>
+      <app-button-filled-block
+        [isLoading]="isLoading"
+        [label]="'SAVE'"
+      ></app-button-filled-block>
+    </form>
+  </div>
+  <div *ngIf="modal.headerTitle === 'ADD'">
+    <form (ngSubmit)="handleAddData()">
+      <app-text-field
+        *ngFor="let fields of modal.listMenu; index as i"
+        [fields]="fields"
+        (onHandleChange)="onHandleChange($event)"
+      ></app-text-field>
+      <app-button-filled-block
+        [isLoading]="isLoading"
+        [label]="'CREATE'"
+      ></app-button-filled-block>
+    </form>
+  </div>
+  <div *ngIf="modal.headerTitle === 'DELETE'">
+    <app-button-filled
+      [color]="'#f44336'"
+      [isLoading]="isLoading"
+      [label]="'Yes, Deleted it'"
+      (onHandleClick)="onDelete()"
+    ></app-button-filled>
+  </div>
+</app-modal>

@@ -1,1 +1,39 @@
-<p>table works!</p>
+<table id="customers">
+  <tr>
+    <th>Username</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Action</th>
+  </tr>
+
+  <tr *ngFor="let data of dataTable; index as i">
+    <td>{{ data?.username }}</td>
+    <td>{{ data?.firstName }}</td>
+    <td>{{ data?.lastName }}</td>
+    <td>{{ data?.email }}</td>
+    <td>{{ data?.phoneNumber }}</td>
+    <td>
+      <app-button-filled
+        [labelColor]="'black'"
+        [color]="'#e7e7e7'"
+        [label]="'VIEW'"
+        (onHandleClick)="handleView(data)"
+      ></app-button-filled>
+      <app-button-filled
+        [color]="'#008CBA'"
+        [label]="'EDIT'"
+        (onHandleClick)="handleEdit(data)"
+      ></app-button-filled>
+      <app-button-filled
+        [color]="'#f44336'"
+        [label]="'DELETE'"
+        (onHandleClick)="handleDelete(data)"
+      ></app-button-filled>
+    </td>
+  </tr>
+</table>
+<p *ngIf="dataTable?.length === 0" style="text-align: center">
+  loading data...
+</p>
