@@ -247,6 +247,7 @@ export class UsersComponent implements OnInit {
       isShow: true,
       headerTitle: 'VIEW',
       dataRow: data,
+      message: '',
     };
   }
 
